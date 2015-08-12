@@ -1,0 +1,10 @@
+- content_for(:title) { 'Todo' }
+
+- content_for(:thanks) do
+  li= link_to 'oreilly-japan/mithril-book-sample', 'https://github.com/oreilly-japan/mithril-book-sample/tree/master/chapter02_tutorial/todo3', target: '_blank'
+  li= link_to 'Getting Started - Mithril', 'https://lhorie.github.io/mithril/getting-started.html', target: '_blank'
+
+javascript:
+  m.mount($('#app').get(0), components.todo.component);
+
+

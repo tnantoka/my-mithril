@@ -41,5 +41,24 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  gem 'rspec-rails'
+  gem 'teaspoon-jasmine'
+  gem 'phantomjs.rb'
 end
+
+group :test do
+  gem 'simplecov', require: false
+end
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-mithril'
+end
+
+gem 'slim-rails'
+gem 'jquery-turbolinks'
+gem 'bootstrap-sass'
+gem 'font-awesome-sass'
+gem 'dotenv-rails'
+gem 'activerecord-session_store'
 

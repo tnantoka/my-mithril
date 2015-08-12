@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    meta charset="UTF-8"
+    title
+      = "#{yield(:title)} - " if content_for?(:title)
+      | MyMithril
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': true
+    = javascript_include_tag 'application', 'data-turbolinks-track': true
+    = csrf_meta_tags
+    meta name="viewport" content="width=device-width, initial-scale=1"
+  body
+    .container-fluid
+      - if content_for?(:title)
+        h1
+          => yield(:title)
+          small
+            = link_to MyMithril, :root, class: 'text-muted'
+        #app
+        h2 Thanks
+        ul.list-unstyled= yield(:thanks)
+      - else
+        h1 MyMithril 
+      = yield
