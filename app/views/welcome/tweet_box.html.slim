@@ -1,0 +1,9 @@
+- content_for(:title) { 'Tweet Box' }
+
+- content_for(:thanks) do
+  li= link_to 'React.js Introduction For People Who Know Just Enough jQuery To Get By · React for Designers', 'http://reactfordesigners.com/labs/reactjs-introduction-for-people-who-know-just-enough-jquery-to-get-by/', target: '_blank'
+
+javascript:
+  m.mount($('#app').get(0), components.tweetBox.component);
+
+

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   controller :welcome do
     get :todo
+    get 'tweet-box'
   end
 
   resources :todos, only: %i(index create)
