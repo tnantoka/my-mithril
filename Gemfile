@@ -49,6 +49,19 @@ end
 
 group :test do
   gem 'simplecov', require: false
+  gem 'codeclimate-test-reporter', require: false
+end
+
+group :development do
+  gem 'capistrano-rvm'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-passenger'
+end
+
+group :production do
+  gem 'exception_notification'
+  gem 'therubyracer', platforms: :ruby
 end
 
 source 'https://rails-assets.org' do
