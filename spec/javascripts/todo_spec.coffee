@@ -78,16 +78,30 @@ describe 'Todo', ->
         spyOn(m.redraw, 'strategy').and.callThrough()
 
       describe 'with enter key', ->
-        it 'can call vm.add', ->
+        it 'can call vm.add and set entered', ->
           todo.vm.init()
           todo.vm.onkeypress(keyCode: 13)
           expect(todo.vm.add).toHaveBeenCalled()
+          expect(todo.vm.entered()).toBe(true)
 
       describe 'without enter key', ->
         it 'can call m.redraw.strategy with none', ->
           todo.vm.init()
           todo.vm.onkeypress({})
           expect(m.redraw.strategy).toHaveBeenCalledWith('none')
+
+    describe '.onkeyup', ->
+      describe 'without entered', ->
+        it 'can update vm.description', ->
+          todo.vm.init()
+          todo.vm.onkeyup('b')
+          expect(todo.vm.description()).toBe('b')
+      describe 'with entered', ->
+        it 'cannot update vm.description', ->
+          todo.vm.init()
+          todo.vm.entered(true)
+          todo.vm.onkeyup('b')
+          expect(todo.vm.description()).toBe('')
 
   describe 'controller', ->
     beforeEach ->

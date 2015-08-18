@@ -14,6 +14,7 @@ vm =
   init: ->
     vm.list = Todo.list()
     vm.description = m.prop('')
+    vm.entered = m.prop(false)
   add: ->
     if vm.description().length
       todo = new Todo(description: vm.description())
@@ -23,8 +24,12 @@ vm =
   toggle: (value) ->
     @done(value)
     Todo.save(vm.list())
+  onkeyup: (value) ->
+    vm.description(value) unless vm.entered()
+    vm.entered(false)
   onkeypress: (e) ->
     if e.keyCode == 13
+      vm.entered(true)
       vm.add()
     else
       m.redraw.strategy('none')
@@ -40,7 +45,7 @@ view = ->
         m '.input-group', [
           m 'input.form-control', {
             value: vm.description()
-            onkeyup: m.withAttr('value', vm.description)
+            onkeyup: m.withAttr('value', vm.onkeyup)
             onkeypress: vm.onkeypress
           }
           m 'span.input-group-btn', m 'button.btn.btn-primary', onclick: vm.add, 'Add'
